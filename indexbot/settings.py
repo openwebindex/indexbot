@@ -13,24 +13,28 @@ SPIDER_MODULES = ["indexbot.spiders"]
 NEWSPIDER_MODULE = "indexbot.spiders"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = "indexbot (+http://openwebindex.org/indexbot)"
+USER_AGENT = "indexbot (+https://openwebindex.org/indexbot)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+# Configure job directory for data persistence
+JOBDIR = "crawls/indexbot"
+
 # Configure logging
-LOG_LEVEL = 'INFO'  # Set the logging level to WARNING or ERROR to reduce output
+LOG_LEVEL = "INFO"  # Set the logging level to WARNING or ERROR to reduce output
 
 # Configure depth limit
 DEPTH_LIMIT = 3
+DEPTH_PRIORITY = 1
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 2
 # The download delay setting will honor only one of:
 CONCURRENT_REQUESTS_PER_DOMAIN = 8
 CONCURRENT_REQUESTS_PER_IP = 8
@@ -76,9 +80,9 @@ ITEM_PIPELINES = {
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-AUTOTHROTTLE_START_DELAY = 5
+AUTOTHROTTLE_START_DELAY = 2
 # The maximum download delay to be set in case of high latencies
-AUTOTHROTTLE_MAX_DELAY = 60
+AUTOTHROTTLE_MAX_DELAY = 30
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
 AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0

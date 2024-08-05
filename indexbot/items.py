@@ -7,6 +7,16 @@ import scrapy
 
 
 class IndexbotItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    url = scrapy.Field()
+    canonical_url = scrapy.Field()
+    language = scrapy.Field()
+    title = scrapy.Field()
+    meta = scrapy.Field()
+    opengraph = scrapy.Field()
+    publishing = scrapy.Field()
+    headers = scrapy.Field()
+    gen = scrapy.Field()
+    metrics = scrapy.Field()
+    schema = scrapy.Field()
+    status_code = scrapy.Field()
+    timestamp = scrapy.Field()
