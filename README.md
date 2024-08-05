@@ -33,6 +33,26 @@ No, the Open Web Index is designed to be a publicly available, free to use, and 
 If our bot captured personal information or illegal/copyrighted/licensed material please contact us immediately. Please list all effected files. Our bot only captures content, which is publicly available on the internet.
 
 
+## Run the container
+
+1. Pull the image and create a container
+```
+docker run -d -v $(pwd)/data:/data --name indexbot ghcr.io/openwebindex/indexbot:latest
+```
+2. Check if the container is running
+```
+docker ps
+```
+3. Manage the container
+```
+docker logs/start/stop indexbot
+```
+4. Retrieve the output
+```
+docker cp indexbot:app/output/crawled_data.jl crawled_data.jl
+docker cp indexbot:app/output/crawled_sites.txt crawled_data.txt
+```
+
 ## Development
 
 1. Clone the repository and `cd` into it

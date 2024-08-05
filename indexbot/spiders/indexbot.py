@@ -33,7 +33,7 @@ class IndexbotSpider(CrawlSpider):
         # Extract all paragraph content
         paragraphs = response.xpath("//p//text()").getall()
         content = ' '.join(paragraphs).strip()
-        content = content[:2000] + "..." # limit content to 1000 characters
+        content = content[:2000] + "..." # limit content to 2000 characters
 
         # Generate RAKE keywords and SUMY summary
         #keywords = extract_keywords(content)
