@@ -19,7 +19,7 @@ USER_AGENT = "indexbot (+https://openwebindex.org/indexbot)"
 ROBOTSTXT_OBEY = True
 
 # Configure job directory for data persistence
-JOBDIR = "crawls/indexbot"
+#JOBDIR = "crawls/indexbot"
 
 # Configure logging
 LOG_LEVEL = "INFO"  # Set the logging level to WARNING or ERROR to reduce output

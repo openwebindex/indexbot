@@ -7,34 +7,36 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 
+import json
+
 
 class IndexbotPipeline:
     def process_item(self, item, spider):
         return item
 
-import json
-
 class JsonWriterPipeline:
     def open_spider(self, spider):
-        self.file = open('crawled_data.jl', 'w')
+        self.file = open("../output/crawled_data.jl", "w")
 
     def close_spider(self, spider):
         self.file.close()
 
     def process_item(self, item, spider):
-        line = json.dumps(item) + "\n"
+        item_dict = ItemAdapter(item).asdict()
+        line = json.dumps(item_dict) + "\n"
         self.file.write(line)
         return item
     
 
 class TxtWriterPipeline:
     def open_spider(self, spider):
-        self.file = open('crawled_sites.txt', 'w')
+        self.file = open("../output/crawled_sites.txt", "w")
 
     def close_spider(self, spider):
         self.file.close()
 
     def process_item(self, item, spider):
-        line = item["url"] + "\n"
+        item_dict = ItemAdapter(item).asdict()
+        line = item_dict["url"] + "\n"
         self.file.write(line)
         return item

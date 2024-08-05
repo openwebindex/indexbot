@@ -15,6 +15,9 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application
 COPY . /app
 
+# Create the output directory
+RUN mkdir -p /app/output
+
 WORKDIR /app/indexbot
 
 # Set the entry point for the container

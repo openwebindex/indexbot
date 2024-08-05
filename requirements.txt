@@ -1,3 +1,4 @@
 scrapy
+nltk
 rake_nltk
-gensim
+sumy
