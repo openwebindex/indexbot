@@ -2,26 +2,32 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
+import os
 import time
-import logging
 import requests
 
 from indexbot.items import IndexbotItem
 from indexbot.utils.schema_parser import parse_schema
-from indexbot.utils.text_processing import extract_keywords, generate_summary
+#from indexbot.utils.text_processing import extract_keywords, generate_summary
 
 class IndexbotSpider(CrawlSpider):
     name = "indexbot"
     
     # Load start URLs from sources.txt
-    #logging.log(logging.INFO, "Requesting sources.txt")
     start_urls = []
-    res = requests.get("https://data.openwebindex.org/indexes/metaindex-alpha/sources.txt")
+    try:
+        seed_url = os.getenv("SEED_URL")
+        res = requests.get(seed_url)
+    except:
+        res = requests.get("https://cdn.data.openwebindex.org/seeds/default/seed.txt")
     for line in res.text.split("\n"):
         if line.strip() and not line.startswith("#"):
             start_urls.append(line.strip())
-    #logging.log(logging.INFO, f"Loaded {len(start_urls)} start URLs from sources.txt")
     
+    # Restrict crawling to the start URLs if RESTRICT_CRAWL is set
+    if os.getenv("RESTRICT_CRAWL"):
+        allowed_domains = start_urls
+        
     #allowed_domains = ["producthunt.com"]  # Replace with the target domain(s)
     #start_urls = ["http://producthunt.com"]  # Replace with the initial URL(s)
 
