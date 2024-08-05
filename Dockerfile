@@ -15,7 +15,7 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application
 COPY . /app
 
-WORKDIR /app/indexbot/indexbot
+WORKDIR /app/indexbot
 
 # Set the entry point for the container
 ENTRYPOINT ["scrapy"]
