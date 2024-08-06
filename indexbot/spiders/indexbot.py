@@ -26,7 +26,9 @@ class IndexbotSpider(CrawlSpider):
     
     # Restrict crawling to the start URLs if RESTRICT_CRAWL is set
     if os.getenv("RESTRICT_CRAWL"):
-        allowed_domains = start_urls
+        allowed_domains = []
+        for url in start_urls:
+            allowed_domains.append(url.replace("https://", "").replace("http://", "").split("/")[0])
         
     #allowed_domains = ["producthunt.com"]  # Replace with the target domain(s)
     #start_urls = ["http://producthunt.com"]  # Replace with the initial URL(s)
